@@ -6,7 +6,7 @@ mp_hands = mp.solutions.hands
 CAMERA_WIDTH=1440
 CAMERA_HEIGHT=960
 # For webcam input:
-cap = cv2.VideoCapture(1, cv2.CAP_GSTREAMER)
+cap = cv2.VideoCapture(1, cv2.CAP_V4L2)
 
 with mp_hands.Hands(
     model_complexity=0,
