@@ -34,7 +34,7 @@ def test_camera():
         ret, frame = cap.read()
         ret2, frame2 = cap2.read()
 
-        if not ret:
+        if not ret or not ret2:
             print("Error: Failed to grab frame.")
             break
 
