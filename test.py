@@ -7,7 +7,12 @@ CAMERA_WIDTH=1440
 CAMERA_HEIGHT=960
 # For webcam input:
 cap = cv2.VideoCapture("/dev/video0")
-
+if not cap.isOpened():
+    print("ERROR: Cannot open camera /dev/video0")
+    print("Try: cv2.VideoCapture(0) instead")
+    exit()
+print(f"Camera opened successfully")
+print(f"Backend: {cap.getBackendName()}")
 with mp_hands.Hands(
     model_complexity=0,
     min_detection_confidence=0.5,
