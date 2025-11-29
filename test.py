@@ -7,7 +7,10 @@ def test_camera(camera_index=0):
     Args:
         camera_index (int): The index of the camera to test (e.g., 0 for default).
     """
-    cap = cv2.VideoCapture(camera_index)
+    cap = cv2.VideoCapture(camera_index, apiPreference=cv2.CAP_V4L2)
+    cap.set(cv2.CAP_PROP_FRAME_WIDTH, 1440)
+    cap.set(cv2.CAP_PROP_FRAME_HEIGHT, 960)
+    cap.set(cv2.CAP_PROP_FPS, 30)
 
     if not cap.isOpened():
         print(f"Error: Could not open camera with index {camera_index}.")
