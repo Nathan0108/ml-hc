@@ -223,7 +223,6 @@ def print_system_info():
     # Check for evdev
     try:
         import evdev
-        print(f"✓ evdev library installed (version {evdev.__version__})")
     except ImportError:
         print("✗ evdev not installed")
         print("  Install with: pip install evdev")
