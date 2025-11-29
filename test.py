@@ -3,9 +3,13 @@ import mediapipe as mp
 mp_drawing = mp.solutions.drawing_utils
 mp_drawing_styles = mp.solutions.drawing_styles
 mp_hands = mp.solutions.hands
-
+CAMERA_WIDTH=1440
+CAMERA_HEIGHT=960
 # For webcam input:
 cap = cv2.VideoCapture(0, cv2.CAP_V4L2)
+cap.set(cv2.CAP_PROP_FOURCC, cv2.VideoWriter_fourcc('M', 'J', 'P', 'G'))
+cap.set(cv2.CAP_PROP_FRAME_WIDTH, CAMERA_WIDTH)
+cap.set(cv2.CAP_PROP_FRAME_HEIGHT, CAMERA_HEIGHT)
 with mp_hands.Hands(
     model_complexity=0,
     min_detection_confidence=0.5,
