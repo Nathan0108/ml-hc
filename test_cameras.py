@@ -19,7 +19,7 @@ def main():
     time.sleep(0.5)
 
     # Initialize right camera
-    c2 = stream.Camera(src=1, width=CAMERA_WIDTH, height=CAMERA_HEIGHT)
+    c2 = stream.Camera(src=2, width=CAMERA_WIDTH, height=CAMERA_HEIGHT)
     c2.undistort("calibration_right.yml", 1)
 
     print("Starting detection trackers...")
