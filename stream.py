@@ -13,6 +13,8 @@ class Camera:
         else:
             backend = cv2.CAP_ANY
 
+        print("Backend is", backend)
+
         self.width = width
         self.height = height
         self.cap = cv2.VideoCapture(src, apiPreference=backend)

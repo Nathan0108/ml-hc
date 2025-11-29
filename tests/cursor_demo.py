@@ -54,7 +54,7 @@ def main():
 
     # Initialize coordinate calculator
     print("Initializing 3D coordinate system...")
-    coords = Coordinates(t2, t1, CAMERA_WIDTH, CAMERA_HEIGHT, "calibration_left.yml")
+    coords = Coordinates(t2, t1, CAMERA_WIDTH, CAMERA_HEIGHT, "../calibration_left.yml")
 
     # Give trackers time to warm up
     time.sleep(1.0)
