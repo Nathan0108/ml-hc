@@ -6,11 +6,11 @@ mp_drawing_styles = mp.solutions.drawing_styles
 mp_hands = mp.solutions.hands
 
 # Try multiple camera indices
-for camera_idx in [0, 2, 4]:
-    cap = cv2.VideoCapture(camera_idx)
-    if cap.isOpened():
-        print(f"Camera opened on index {camera_idx}")
-        break
+
+pipeline = "v4l2src device=/dev/video0 ! video/x-raw,width=640,height=480,framerate=30/1 ! videoconvert ! appsink"
+cap = cv2.VideoCapture(pipeline, cv2.CAP_GSTREAMER)
+if cap.isOpened():
+    print(f"Camera opened on index {0}")
 else:
     print("Could not open any camera!")
     exit(1)
