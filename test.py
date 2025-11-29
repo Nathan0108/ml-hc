@@ -35,4 +35,4 @@ def test_camera(camera_index=0):
 
 if __name__ == "__main__":
     # You can change the camera_index if you have multiple cameras
-    test_camera(0)
+    test_camera(1)
