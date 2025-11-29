@@ -6,8 +6,7 @@ mp_hands = mp.solutions.hands
 CAMERA_WIDTH=1440
 CAMERA_HEIGHT=960
 # For webcam input:
-pipeline = 'v4l2src device=/dev/video0 ! video/x-raw,width=640,height=480 ! videoconvert ! video/x-raw,format=BGR ! appsink drop=1'
-cap = cv2.VideoCapture(pipeline, cv2.CAP_GSTREAMER)
+cap = cv2.VideoCapture(1, cv2.CAP_GSTREAMER)
 
 with mp_hands.Hands(
     model_complexity=0,
