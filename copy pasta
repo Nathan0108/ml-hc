@@ -1,0 +1,59 @@
+width = 1440
+height = 960
+
+def get_monitor_dim(diagonal_length, ar1, ar2):
+    k = diagonal_length / math.sqrt(ar1 **2 + ar2 **2)
+    return ar1 * k, ar2 * k
+
+c1 = stream.Camera(src=0, width=width, height=height)
+c1.undistort("calibration_left.yml", 1)
+t1 = detectors.Tracker(c1)
+c2 = stream.Camera(src=1, width=width, height=height)
+c2.undistort("calibration_right.yml", 1)
+t2 = detectors.Tracker(c2)
+
+if c1.running and c2.running:
+    a = Coordinates(t2, t1, width, height, "calibration_left.yml")
+
+monitor_width = 1920
+monitor_height = 1080
+
+physical_width, physical_height = get_monitor_dim(27, 16, 9)
+
+import cv2
+import mediapipe as mp
+import stream
+from threading import Thread
+mp_drawing = mp.solutions.drawing_utils
+mp_drawing_styles = mp.solutions.drawing_styles
+mp_hands = mp.solutions.hands
+mp_face_detection = mp.solutions.face_detection
+
+while c1.running and c2.running:
+    for idx, (c, t) in enumerate([(c1, t1), (c2, t2)]):
+        success, img = c.read()
+        if not success:
+            continue
+        img = img.copy()
+        img.flags.writeable = True
+        x = a.getOnScrenPixels(0.28, 0.03, -0.01, physical_width, physical_height, monitor_width, monitor_height)
+        if x:
+            print(x)
+
+        results = t.get_results()
+        if results['hands'] is not None:
+            for detection in results['hands']:
+                mp_drawing.draw_landmarks(
+                    img,
+                    detection,
+                    mp_hands.HAND_CONNECTIONS,
+                    mp_drawing_styles.get_default_hand_landmarks_style(),
+                    mp_drawing_styles.get_default_hand_connections_style())
+
+        if results['faces'] is not None:
+            for detection in results['faces']:
+                mp_drawing.draw_detection(img, detection)
+        cv2.imshow(f'{idx}', cv2.flip(img, 1))
+
+    if cv2.waitKey(5) & 0xFF == 27:
+        break
