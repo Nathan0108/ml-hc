@@ -8,11 +8,14 @@ def test_camera():
         camera_index (int): The index of the camera to test (e.g., 0 for default).
     """
     cap = cv2.VideoCapture(0, apiPreference=cv2.CAP_V4L2)
+    cap.set(cv2.CAP_PROP_FOURCC, cv2.VideoWriter_fourcc('M', 'J', 'P', 'G'))
     cap.set(cv2.CAP_PROP_FRAME_WIDTH, 1440)
     cap.set(cv2.CAP_PROP_FRAME_HEIGHT, 960)
     cap.set(cv2.CAP_PROP_FPS, 30)
 
+
     cap2 = cv2.VideoCapture(2, apiPreference=cv2.CAP_V4L2)
+    cap2.set(cv2.CAP_PROP_FOURCC, cv2.VideoWriter_fourcc('M', 'J', 'P', 'G'))
     cap2.set(cv2.CAP_PROP_FRAME_WIDTH, 1440)
     cap2.set(cv2.CAP_PROP_FRAME_HEIGHT, 960)
     cap2.set(cv2.CAP_PROP_FPS, 30)
