@@ -8,12 +8,13 @@ class Camera:
     def __init__(self, src, width, height):
         if sys.platform.startswith("linux"):
             backend = cv2.CAP_V4L2
+            print("Backend is linux")
         elif sys.platform == "darwin":
             backend = cv2.CAP_AVFOUNDATION
+            print("Backend is mac")
         else:
             backend = cv2.CAP_ANY
-
-        print("Backend is", backend)
+            print("Backend is unknown")
 
         self.width = width
         self.height = height
