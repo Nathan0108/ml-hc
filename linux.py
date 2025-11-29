@@ -89,7 +89,7 @@ def main():
     # Initialize coordinate calculator
     print("Initializing 3D coordinate system...")
     coords = Coordinates(
-        t2, t1, CAMERA_WIDTH, CAMERA_HEIGHT, "../calibration_left.yml",
+        t2, t1, CAMERA_WIDTH, CAMERA_HEIGHT, "calibration_left.yml",
         CAMERA_X_OFFSET, CAMERA_Y_OFFSET, CAMERA_Z_OFFSET,
         physical_width, physical_height, MONITOR_WIDTH, MONITOR_HEIGHT
     )
