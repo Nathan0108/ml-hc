@@ -22,7 +22,7 @@ with mp_hands.Hands(
     if not success:
       print("Ignoring empty camera frame.")
       # If loading a video, use 'break' instead of 'continue'.
-      continue
+      break
 
     # To improve performance, optionally mark the image as not writeable to
     # pass by reference.
